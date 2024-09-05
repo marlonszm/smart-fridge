@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<h3><strong>Produtos Disponíveis</strong></h3>
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for produto in produtos %}
+        <tr>
+            <td>{{produto.nome}}</td>
+            <td>{{produto.tipo}}</td>
+            <td>R${{"{:.2f}".format(produto.preco)}}</td>
+            <td>{{produto.quantidade}}</td>
+            <td>
+                <form action="{{url_for('comprar_produto', produto_id=produto.id, user_id=user_id)}}" method="POST">
+                    <button type="submit" class="btn btn-success">Comprar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% with messages = get_flashed_messages(with_categories=True) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="alert alert-{{ category }}">
+    {{message}}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+{% endblock conteudo %}

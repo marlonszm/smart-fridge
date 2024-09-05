@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<h3 style="text-align: center;"><strong>Editar Produto</strong></h3>
+<hr>
+{%- for mensagem in get_flashed_messages() %}
+    <div class="alert alert-danger">
+        {{ mensagem }}
+    </div>
+{%- endfor %}
+<form action="{{ url_for('editar_produto', id=produto.id) }}" method="POST" class="form-control">
+    <label>Nome: </label>
+    <input type="text" name="nome" value="{{produto.nome}}" class="form-control">
+    <label>Quantidade:</label>
+    <input type="number" name="quantidade" value="{{produto.quantidade}}" class="form-control">
+    <label>Tipo:</label>
+    <input type="text" name="tipo" value="{{produto.tipo}}" class="form-control">
+    <label>Preço:</label>
+    <input type="number" name="preco" step="0.01" value="{{produto.preco}}" class="form-control">
+    <label>Validade:</label>
+    <input type="date" name="validade" value="{{produto.validade}}" class="form-control">
+    <button type="submit" class="btn btn-success">Atualizar</button>
+</form>
+{% endblock conteudo %}

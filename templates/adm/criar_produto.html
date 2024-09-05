@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<h3 style="text-align: center;"><strong>Adicionar Produto</strong></h3>
+<hr>
+{%- for mensagem in get_flashed_messages() %}
+    <div class="alert alert-danger">
+        {{mensagem}}
+    </div>
+{%- endfor %}
+<form  action="{{url_for('criar_produto')}}" method= POST class="form-control">
+    <label>Nome: </label>
+    <input type="text" name="nome" placeholder="Nome do produto" class="form-control">
+    <label>Quantidade</label>
+    <input type="text" name="quantidade" placeholder="Quantidade de produtos" class="form-control">
+    <label for="">Tipo</label>
+    <input type="text" name="tipo" placeholder="Tipo do produto" class="form-control">
+    <label for="">Preço</label>
+    <input type="number" name="preco" step="0.01" placeholder="Preço do produto" class="form-control">
+    <label for="">Validade</label>
+    <input type="date" name="validade" placeholder="Preço do produto" class="form-control">
+    <button class="btn btn-success" style="margin-top: 10px;">Adicionar</button>
+</form>
+
+
+{% endblock conteudo %}
